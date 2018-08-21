@@ -23,8 +23,8 @@ deploy:
         secure: B72s23mDgFVj5jkjU+vSqQJXlxIScLFhd+Re4cMyABaglpWrGNkOqmUWh0++kpuDjfRZF2n+qawYfioY1KjRsKFERsE6b7Vn7k/CWUUcYccWuAVR1PnfMP7X3b/oVjmFVYau0bT31FyTh3Rd9I4Ly04B9hZXwxrHKnGAcT+JTMoCyPdVK9g3jtR0SBGZ4qwCK8IYrMd0vs62YouyiNso84xNDsdN9jBa2/8ROEwx6L2K6qjVBLgrO0r/tkBu8Q1iMgllp8OC0lcvjPp9/ZXX1pk0I7w1IngKAzgUx0Mqgs4jJN8fO6oWAptqkkfKUe7VR30Jd8z5r6SE+jps36Ew0N96pVgqCooWwsWXk8rSrhjxQ/YYXLHv9HK7l1ZQXiggJ+MNNtQEtHJ7sWA78Ey5nGAj4vDf2R3rfJkN7klvQWWvufQ0UCPGZ2fmUVaICvILMeqj/oWCAWkmVQtPVn90f/LpU9NPUG0jSQuixXHZ6BkVbWPNTaS1yYRuNByWBcuzuMplIwHGl7AdKtGeL7mR2keZFcETnYyJzuMDZKtEVXz3W3fnwEhqYFvboTBdxzas6NfeH6oeGDvvD5j1+qSM8oJ00pcziolJgiQlVWq1e8BDNrbJs2TMWefxLXe/Ebv47Zu1tU9Qs3WwJOuOxuqne7yNE1RoPwTShGnzPe5rmOc=
     file_glob: true
     file: 
-        - lmms-*.AppImage
-        - lmms-*.dmg
-        - lmms-*win*.exe
+        - $TRAVIS_BUILD_DIR/lmms-*.AppImage
+        - $TRAVIS_BUILD_DIR/lmms-*.dmg
+        - $TRAVIS_BUILD_DIR/lmms-*win*.exe
     skip_cleanup: true
     repo: LmmsBot/LmmsPRsAtrifacts
