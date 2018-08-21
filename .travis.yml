@@ -17,6 +17,9 @@ matrix:
 install: ${TRAVIS_BUILD_DIR}/.travis/install.sh
 script: ${TRAVIS_BUILD_DIR}/.travis/script.sh
 after_script: ${TRAVIS_BUILD_DIR}/.travis/after_script.sh
+before_deploy:
+    - export GIT_TAG=$TRAVIS_PULL_REQUEST.$TRAVIS_BUILD_NUMBER
+    - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
 deploy:
     provider: releases
     api_key:
@@ -26,5 +29,7 @@ deploy:
         - $TRAVIS_BUILD_DIR/build/lmms-*.AppImage
         - $TRAVIS_BUILD_DIR/build/lmms-*.dmg
         - $TRAVIS_BUILD_DIR/build/lmms-*win*.exe
+    on:
+        condition: '("$TYPE" != "style") && ("$TRAVIS_PULL_REQUEST" != "false")'
     skip_cleanup: true
     repo: LmmsBot/LmmsPRsAtrifacts
