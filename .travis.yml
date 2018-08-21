@@ -17,15 +17,19 @@ matrix:
 install: ${TRAVIS_BUILD_DIR}/.travis/install.sh
 script: ${TRAVIS_BUILD_DIR}/.travis/script.sh
 after_script: ${TRAVIS_BUILD_DIR}/.travis/after_script.sh
-before_deploy: make package
+before_deploy:
+    - export GIT_TAG=$TRAVIS_PULL_REQUEST.$TRAVIS_BUILD_NUMBER
+    - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
 deploy:
     provider: releases
     api_key:
-        secure: d4a+x4Gugpss7JK2DcHjyBZDmEFFh4iVfKDfITSD50T6Mc6At4LMgojvEu+6qT6IyOY2vm3UVT6fhyeuWDTRDwW9tfFlaHVA0h8aTRD+eAXOA7pQ8rEMwQO3+WCKuKTfEqUkpL4wxhww8dpkv54tqeIs0S4TBqz9tk8UhzU7XbE=
-    file: lmms-${TRAVIS_TAG:1}-$TARGET_OS.exe
-    skip_cleanup: true
+        secure: B72s23mDgFVj5jkjU+vSqQJXlxIScLFhd+Re4cMyABaglpWrGNkOqmUWh0++kpuDjfRZF2n+qawYfioY1KjRsKFERsE6b7Vn7k/CWUUcYccWuAVR1PnfMP7X3b/oVjmFVYau0bT31FyTh3Rd9I4Ly04B9hZXwxrHKnGAcT+JTMoCyPdVK9g3jtR0SBGZ4qwCK8IYrMd0vs62YouyiNso84xNDsdN9jBa2/8ROEwx6L2K6qjVBLgrO0r/tkBu8Q1iMgllp8OC0lcvjPp9/ZXX1pk0I7w1IngKAzgUx0Mqgs4jJN8fO6oWAptqkkfKUe7VR30Jd8z5r6SE+jps36Ew0N96pVgqCooWwsWXk8rSrhjxQ/YYXLHv9HK7l1ZQXiggJ+MNNtQEtHJ7sWA78Ey5nGAj4vDf2R3rfJkN7klvQWWvufQ0UCPGZ2fmUVaICvILMeqj/oWCAWkmVQtPVn90f/LpU9NPUG0jSQuixXHZ6BkVbWPNTaS1yYRuNByWBcuzuMplIwHGl7AdKtGeL7mR2keZFcETnYyJzuMDZKtEVXz3W3fnwEhqYFvboTBdxzas6NfeH6oeGDvvD5j1+qSM8oJ00pcziolJgiQlVWq1e8BDNrbJs2TMWefxLXe/Ebv47Zu1tU9Qs3WwJOuOxuqne7yNE1RoPwTShGnzPe5rmOc=
+    file_glob: true
+    file: 
+        - $TRAVIS_BUILD_DIR/build/lmms-*.AppImage
+        - $TRAVIS_BUILD_DIR/build/lmms-*.dmg
+        - $TRAVIS_BUILD_DIR/build/lmms-*win*.exe
     on:
-        tags: true
-        all_branches: true
-        condition: '("$TARGET_OS" = win??)'
-    repo: LMMS/lmms
+        condition: '("$TYPE" != "style") && ("$TRAVIS_PULL_REQUEST" != "false")'
+    skip_cleanup: true
+    repo: LmmsBot/LmmsPRsAtrifacts
