@@ -17,7 +17,6 @@ matrix:
 install: ${TRAVIS_BUILD_DIR}/.travis/install.sh
 script: ${TRAVIS_BUILD_DIR}/.travis/script.sh
 after_script: ${TRAVIS_BUILD_DIR}/.travis/after_script.sh
-before_deploy: make package
 deploy:
     provider: releases
     api_key:
