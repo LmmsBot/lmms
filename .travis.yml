@@ -20,6 +20,7 @@ after_script: ${TRAVIS_BUILD_DIR}/.travis/after_script.sh
 before_deploy:
     - export GIT_TAG=$TRAVIS_PULL_REQUEST.$TRAVIS_BUILD_NUMBER
     - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+    - git push origin --tags
 deploy:
     provider: releases
     api_key:
