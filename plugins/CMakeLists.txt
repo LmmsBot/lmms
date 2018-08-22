@@ -91,13 +91,8 @@ ENDIF("${PLUGIN_LIST}" STREQUAL "")
 IF(MSVC)
 	SET(MSVC_INCOMPATIBLE_PLUGINS
 		LadspaEffect
-		monstro
-		organic
-		ReverbSC
 		sid
-		vibed
-		VstEffect
-		Xpressive
+		#VstEffect
 		zynaddsubfx
 	)
 	message(WARNING "Compiling with MSVC. The following plugins are not available: ${MSVC_INCOMPATIBLE_PLUGINS}")
