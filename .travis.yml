@@ -31,5 +31,6 @@ deploy:
         - $TRAVIS_BUILD_DIR/build/lmms-*win*.exe
     on:
         condition: '("$TYPE" != "style") && ("$TRAVIS_PULL_REQUEST" != "false")'
+        all_branches: true
     skip_cleanup: true
     repo: LmmsBot/LmmsPRsAtrifacts
